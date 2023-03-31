@@ -35,7 +35,8 @@ export const employee_Registration = async(body)=>{
 
 export const login = async(body)=>{
     const find_Emp = await Employee.findOne({emailId:body.emailId});
-    const validPassword = bcrypt.compareSync(body.password,Employee.password)
+    const validPassword = bcrypt.compareSync(body.password,find_Emp.password)
+    console.log("We come till here" + validPassword)
     if(validPassword){
         const data = jwt.sign({"emailId":Employee.emailId,"id":Employee._id}, process.env.LOGIN_SECRET_CODE);
         return data;
