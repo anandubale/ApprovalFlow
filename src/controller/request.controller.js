@@ -1,15 +1,15 @@
-import * as EmployeeService from '../services/employee.service.js';
+import * as RequestService from "../services/request.service.js"
 import HttpStatus from 'http-status-codes';
 import http  from 'winston';
 
-export const employee_Registration = async (req,res)=>{
+export const ticket_Generation = async (req,res)=>{
     try{    
-        console.log("emp_Controller");
-        const data = await EmployeeService.employee_Registration(req.body)
+        console.log("ticket_Controller");
+        const data = await RequestService.Request_Generation(req.body)
             res.status(HttpStatus.CREATED).json({
                 code:HttpStatus.CREATED,
                 data: data,
-                message:"Employee is Created Successfully"
+                message:"Ticket is Created Successfully"
             });
     }catch(error){
         res.status(HttpStatus.CONFLICT).json({

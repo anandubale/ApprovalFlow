@@ -2,7 +2,7 @@
 import bcrypt from  "bcrypt";
 import  jwt  from "jsonwebtoken";
 
-import Employee from "../model/user.model.js";
+import  {Employee } from "../model/Request.model.js";
 
 /**
  * Service for Employee Registration
@@ -10,7 +10,7 @@ import Employee from "../model/user.model.js";
 
 export const employee_Registration = async(body)=>{
 
-            console.log("EMP_sERVICE");
+    console.log("EMP_sERVICE");
 
     const saltRounds = 10;
     const hashedPassword = bcrypt.hashSync(body.password,saltRounds);
@@ -20,7 +20,7 @@ export const employee_Registration = async(body)=>{
         throw new Error("Employee already registered");
     } 
     else{
-        
+        console.log(body);
         const data = Employee.create(body);
         console.log("EMployee is Created, hurray!!")
         return data;
@@ -38,8 +38,8 @@ export const login = async(body)=>{
     const validPassword = bcrypt.compareSync(body.password,find_Emp.password)
     console.log("We come till here" + validPassword)
     if(validPassword){
-        const data = jwt.sign({"emailId":Employee.emailId,"id":Employee._id}, process.env.LOGIN_SECRET_CODE);
-        return data;
+        const token = jwt.sign({"emailId":Employee.emailId,"id":Employee._id}, process.env.LOGIN_SECRET_CODE);
+        return token;
     }
 
     else{

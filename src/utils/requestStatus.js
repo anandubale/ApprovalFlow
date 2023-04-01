@@ -1,0 +1,12 @@
+
+
+export const  Enum_Request_Status ={
+
+    REQUESTED :"REQUESTED",
+    PENDING : "PENDING",
+    INPROGRESS : "INPROGRESS",
+    RETURN_FOR_CORRECTION :"RETURN_FOR_CORRECTION",
+    REJECTED :"REJECTED",
+    APPROVED : "APPROVED"
+
+} 
